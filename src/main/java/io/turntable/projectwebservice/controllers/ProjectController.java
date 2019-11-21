@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import io.turntable.projectwebservice.models.Project;
 import io.turntable.projectwebservice.services.ProjectDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -30,6 +31,7 @@ public class ProjectController {
     }
 
     @ApiOperation("get project by name")
+    @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping("/project/search/{name}")
 //    public List<Project> getAllProjectByName(@RequestParam(name = "name", defaultValue = "---") String name) {
     public List<Project> getAllProjectByName(@PathVariable String name) {

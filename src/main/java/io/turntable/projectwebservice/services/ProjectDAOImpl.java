@@ -39,7 +39,7 @@ public class ProjectDAOImpl implements ProjectDAO {
     @Override
     public void addProject(Project project) {
         int rows = jdbcTemplate.update("insert into projects (project_name, description) values (?, ?)",
-                new Project().getProjectName(), new Project().getProjectDescription());
+                new Project().getProjectName(), new Project().getDescription());
         System.out.println("project added successfully");
     }
 
@@ -57,7 +57,7 @@ public class ProjectDAOImpl implements ProjectDAO {
         this.jdbcTemplate.update(
                 "update projects set project_name = ?, description = ? where project_id = ?",
                 project.getProjectName(),
-                project.getProjectDescription(),
+                project.getDescription(),
                 project.getProjectID());
     }
 
