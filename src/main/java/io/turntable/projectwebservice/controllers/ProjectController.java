@@ -1,5 +1,7 @@
 package io.turntable.projectwebservice.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.turntable.projectwebservice.models.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,33 +13,33 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collections;
 import java.util.List;
 
+@Api
 @RestController
-@RequestMapping("/project")
 public class ProjectController {
 
     @Autowired
-    private JdbcTemplate jdbcTemp;
+    private JdbcTemplate jdbcTemplate;
 
-    public JdbcTemplate getJdbcTemp() {
-        return jdbcTemp;
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
     }
 
-    public void setJdbcTemp(JdbcTemplate jdbcTemp) {
-        this.jdbcTemp = jdbcTemp;
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    @RequestMapping("/{projectID}")
-    public List<Project> getAllProjectsByID(@PathVariable("projectID") String projectID) {
-        Project project = new Project();
-        project.setProjectID(Integer.parseInt(projectID));
-        project.setProjectName("tcms");
-        project.setDescription("huuuu");
+    @ApiOperation("get all projects")
+    @RequestMapping("/project")
+    public List<Project> getAllProjects() {
+      List<Project> projects = jdbcTemplate.query();
 
-        return Collections.singletonList(project);
+        return projects;
     }
 
-    @RequestMapping("/project/{}")
-    public Project getAllProjectByName() {
+    @ApiOperation("get project by name")
+    @RequestMapping("/project/name")
+    public Project getAllProjectByName(@RequestParam(name = "name", defaultValue = "") String name) {
+
         return null;
     }
 
