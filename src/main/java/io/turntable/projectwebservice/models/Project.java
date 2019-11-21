@@ -1,12 +1,10 @@
 package io.turntable.projectwebservice.models;
 
-//@Entity
 public class Project {
 
-//    @Id
     private int projectID;
     private String projectName;
-    private String productDescription;
+    private String projectDescription;
 
     public Project() {
     }
@@ -27,11 +25,11 @@ public class Project {
         this.projectName = projectName;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public String getProjectDescription() {
+        return projectDescription;
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setProjectDescription(String projectDescription) {
+        this.projectDescription = projectDescription;
     }
 }

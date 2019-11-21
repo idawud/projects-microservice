@@ -19,7 +19,7 @@ SET default_with_oids = false;
 --- drop table
 ---
 
-DROP TABLE IF EXISTS projects;
+DROP TABLE IF EXISTS projects_table;
 
 ---
 --- Name: projects
