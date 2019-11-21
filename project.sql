@@ -16,19 +16,22 @@ SET default_with_oids = false;
 
 
 ---
---- drop tables
+--- drop table
 ---
 
+DROP TABLE IF EXISTS projects;
 
-DROP TABLE IF EXISTS clients;
+---
+--- Name: projects
+---
 
-create table project IF NOT EXIST(
-    project_id serial primary key
-    project_name varchar(200) not null
-    description varchar(400) not null
+create table projects (
+    project_id serial primary key,
+    project_name varchar(200) not null,
+    description text not null
 );
 
-insert into project(project_name, description) values ('client micro-service', 'tcms clients service');
-insert into project(project_name, description) values ('logging micro-service', 'tcms logging pub/sub service');
-insert into project(project_name, description) values ('email micro-service', 'tcms email pub/sub service');
-insert into project(project_name, description) values ('project micro-service', 'tcms project service');
+insert into projects(project_name, description) values ('client micro-service', 'tcms clients service');
+insert into projects(project_name, description) values ('logging micro-service', 'tcms logging pub/sub service');
+insert into projects(project_name, description) values ('email micro-service', 'tcms email pub/sub service');
+insert into projects(project_name, description) values ('project micro-service', 'tcms project service');
