@@ -36,7 +36,7 @@ public class ProjectController {
     }
 
     @ApiOperation("add new project")
-    @RequestMapping(value = "/addProject",method = RequestMethod.POST)
+    @RequestMapping(value = "/project/add",method = RequestMethod.POST)
     public void addProject(@RequestBody Project project) {
         projectDAO.addProject(project);
     }
