@@ -23,7 +23,8 @@ public class ProjectController {
     private ProjectDAOImpl projectDAO;
 
     @ApiOperation("get all projects")
-    @RequestMapping("/project")
+
+    @RequestMapping({"/project", "/"})
     public List<Project> getAllProjects() {
         return projectDAO.getAllProjects();
     }
