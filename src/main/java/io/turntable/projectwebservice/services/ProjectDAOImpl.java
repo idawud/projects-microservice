@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Map;
 
 public class ProjectDAOImpl implements ProjectDAO {
 
@@ -37,9 +38,10 @@ public class ProjectDAOImpl implements ProjectDAO {
     }
 
     @Override
-    public void addProject(Project project) {
-        int rows = jdbcTemplate.update("insert into projects (project_name, description) values (?, ?)",
-                new Project().getProjectName(), new Project().getDescription());
+    public void addProject(Map<String, String> jsonRequest) {
+        jdbcTemplate.update("insert into projects (project_name, description) values (?, ?)",
+                new Object[]{jsonRequest.get("project_name"),jsonRequest.get("description")}
+        );
         System.out.println("project added successfully");
     }
 

@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @Api
 @RestController
@@ -39,17 +40,10 @@ public class ProjectController {
     }
 
     @ApiOperation("add new project")
-    @RequestMapping(value = "/project/add",method = RequestMethod.POST)
-    public void addProject(@RequestBody Project project) {
-        projectDAO.addProject(project);
+    @PostMapping("/project/add")
+    public void addProject(@RequestBody Map<String, String> jsonRequest) {
+        projectDAO.addProject(jsonRequest);
     }
-//    @PostMapping(value = "/customer/create", consumes = "application/json", produces = "application/json")
-//    public Customer addNewCustomer(
-//            @RequestBody Customer customer
-//    ){
-//        //redisMessagePublisherUpdates.publish(customer);
-//        return dao.addNewCustomer(customer);
-//    }
 
     @ApiOperation("delete project")
     @RequestMapping("/project/delete/{id}")
