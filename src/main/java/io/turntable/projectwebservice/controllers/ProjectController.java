@@ -2,8 +2,8 @@ package io.turntable.projectwebservice.controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.turntable.projectwebservice.models.Project;
-import io.turntable.projectwebservice.ServiceImplementors.ProjectDAOImpl;
+import io.turntable.projectwebservice.DTO.Project;
+import io.turntable.projectwebservice.serviceImplementors.ProjectDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class ProjectController {
     private ProjectDAOImpl projectDAO;
 
     @ApiOperation("get all projects")
-//    @ResponseStatus(value = HttpStatus.OK)
+    @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping({"/project", "/"})
     public List<Project> getAllProjects() {
         return projectDAO.getAllProjects();
@@ -34,6 +34,7 @@ public class ProjectController {
 
     @ApiOperation("add new project")
     @PostMapping("/project/add")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addProject(@RequestBody Map<String, String> jsonRequest) {
         projectDAO.addProject(jsonRequest);
     }
@@ -44,5 +45,8 @@ public class ProjectController {
         projectDAO.deleteProject(id);
     }
 
-
+    @ApiOperation("update record")
+    @PutMapping("/project/update")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateProjectRecord(@RequestBody )
 }

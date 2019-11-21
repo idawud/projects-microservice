@@ -1,6 +1,6 @@
 package io.turntable.projectwebservice.services;
 
-import io.turntable.projectwebservice.models.Project;
+import io.turntable.projectwebservice.DTO.Project;
 
 import java.util.List;
 import java.util.Map;

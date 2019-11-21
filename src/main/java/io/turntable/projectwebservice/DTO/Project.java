@@ -1,4 +1,4 @@
-package io.turntable.projectwebservice.models;
+package io.turntable.projectwebservice.DTO;
 
 public class Project {
 

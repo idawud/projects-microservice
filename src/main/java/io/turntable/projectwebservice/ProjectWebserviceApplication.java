@@ -1,7 +1,7 @@
 package io.turntable.projectwebservice;
 
-import io.turntable.projectwebservice.models.Project;
-import io.turntable.projectwebservice.ServiceImplementors.ProjectDAOImpl;
+import io.turntable.projectwebservice.DTO.Project;
+import io.turntable.projectwebservice.serviceImplementors.ProjectDAOImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
