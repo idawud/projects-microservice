@@ -30,7 +30,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 
     @Override
     public List<Project> getProjectByName(String productName) {
-        List<Project> projects = jdbcTemplate.query("select * from projects where name like ?",
+        List<Project> projects = jdbcTemplate.query("select * from projects where project_name like ?",
                 new Object[]{"%" + productName.toLowerCase() + "%"},
                 BeanPropertyRowMapper.newInstance(Project.class));
         return projects;
