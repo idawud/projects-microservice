@@ -9,11 +9,11 @@ public class Project {
     public Project() {
     }
 
-    public Project(int project_id, String project_name, String description) {
-        this.project_id = project_id;
-        this.project_name = project_name;
-        this.description = description;
-    }
+//    public Project(int project_id, String project_name, String description) {
+//        this.project_id = project_id;
+//        this.project_name = project_name;
+//        this.description = description;
+//    }
 
     public int getProject_id() {
         return project_id;

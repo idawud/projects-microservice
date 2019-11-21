@@ -1,6 +1,7 @@
-package io.turntable.projectwebservice.services;
+package io.turntable.projectwebservice.ServiceImplementors;
 
 import io.turntable.projectwebservice.models.Project;
+import io.turntable.projectwebservice.services.ProjectDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -48,10 +49,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 
 
     @Override
-    public void deleteProject(String projectID) {
-//        Integer projectID = Integer.parseInt(projectID);
-        jdbcTemplate.update("delete from projects where project_id = ?", new Object[]{projectID});
-        System.out.println("project with id = " + projectID + "deleted successfully");
+    public void deleteProject(String projectId) {
+        int pId = Integer.parseInt(projectId);
+        jdbcTemplate.update("delete from projects where project_id = ?", new Object[]{pId});
+        System.out.println("project with id = " + pId + "deleted successfully");
     }
 
 

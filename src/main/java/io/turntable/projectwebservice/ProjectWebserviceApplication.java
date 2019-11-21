@@ -1,11 +1,10 @@
 package io.turntable.projectwebservice;
 
 import io.turntable.projectwebservice.models.Project;
-import io.turntable.projectwebservice.services.ProjectDAOImpl;
+import io.turntable.projectwebservice.ServiceImplementors.ProjectDAOImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.core.JdbcTemplate;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
