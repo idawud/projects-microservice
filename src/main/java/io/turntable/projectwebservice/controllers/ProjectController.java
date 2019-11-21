@@ -2,6 +2,7 @@ package io.turntable.projectwebservice.controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import io.turntable.projectwebservice.models.Project;
 import io.turntable.projectwebservice.services.ProjectDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ public class ProjectController {
     private ProjectDAOImpl projectDAO;
 
     @ApiOperation("get all projects")
-
     @RequestMapping({"/project", "/"})
     public List<Project> getAllProjects() {
         return projectDAO.getAllProjects();
@@ -46,7 +46,7 @@ public class ProjectController {
     }
 
     @ApiOperation("delete project")
-    @RequestMapping("/project/delete/{id}")
+    @DeleteMapping("/project/delete/{id}")
     public void deleteProject(@PathVariable String id) {
         projectDAO.deleteProject(id);
     }

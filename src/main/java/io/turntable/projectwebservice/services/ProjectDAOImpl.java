@@ -49,7 +49,9 @@ public class ProjectDAOImpl implements ProjectDAO {
 
     @Override
     public void deleteProject(String projectID) {
-        jdbcTemplate.update("delete from projects where project_id = ?", projectID);
+//        Integer projectID = Integer.parseInt(projectID);
+        jdbcTemplate.update("delete from projects where project_id = ?", new Object[]{projectID});
+        System.out.println("project with id = " + projectID + "deleted successfully");
     }
 
 
@@ -58,9 +60,9 @@ public class ProjectDAOImpl implements ProjectDAO {
     public void updateProject(Project project) {
         this.jdbcTemplate.update(
                 "update projects set project_name = ?, description = ? where project_id = ?",
-                project.getProjectName(),
+                project.getProject_name(),
                 project.getDescription(),
-                project.getProjectID());
+                project.getProject_id());
     }
 
 }

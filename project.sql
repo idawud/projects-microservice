@@ -26,6 +26,7 @@ DROP TABLE IF EXISTS projects;
 ---
 
 create table projects (
+--    NB: all TO field must be same as db fields
     project_id serial primary key,
     project_name varchar(200) not null,
     description text not null

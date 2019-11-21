@@ -21,6 +21,9 @@ public class ProjectWebserviceApplication {
 		return new ProjectDAOImpl();
 	}
 
+	@Bean
+	public Project getProject(){return new Project();}
+
 //	@Bean
 //	public Project getProjectBean(){return new Project();}
 }
