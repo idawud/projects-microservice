@@ -76,10 +76,12 @@ public class ProjectDAOImpl implements ProjectDAO {
 }
 
 /*
-    // todo: wrt controller
+    // todo: process json as DAO
     @Override
     public void addProject(Project project) {
         jdbcTemplate.update("insert into projects (project_name, description) values (?, ?)",
                 new Object[]{project.getProject_name(),project.getDescription()});
         System.out.println("new project added successfully");}
 */
+
+// TODO: 11/22/19 :: refactor code
