@@ -38,7 +38,6 @@ public class ProjectController {
     @PostMapping("/project/add")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addProject(@RequestBody Project project) {
-        System.out.println("....inside route " + project);
         projectService.addProject(project);
     }
 
@@ -54,12 +53,11 @@ public class ProjectController {
     @ApiOperation("update existing project")
     @PutMapping("/project/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateProjectRecord(@PathVariable String id, @RequestBody Map<String, String> requestBody) {
-        Project result = projectService.getProjectById(id);
-        result.setProject_name(requestBody.get("project_name"));
-        result.setDescription(requestBody.get("description"));
-        projectService.updateProject(result);
-        System.out.println("project with id = " + id + " updated successfully");
+    public void updateProjectRecord(@PathVariable String id, @RequestBody Project project) {
+        Project projectToUpdate = projectService.getProjectById(id);
+        projectToUpdate.setProject_name(project.getProject_name());
+        projectToUpdate.setDescription(project.getDescription());
+        projectService.updateProject(projectToUpdate);
     }
 
 
@@ -72,17 +70,6 @@ public class ProjectController {
 }
 
 
-
-/*
-    todo: pass json as ooject
-    @ApiOperation("add project")
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/project/add", consumes = "application/json", produces = "application/java")
-    public void addProject(@RequestBody Project project){
-        projectDAO.updateProject(project);
-        System.out.println("new project added successfully");
-    }
-*/
 
 
 

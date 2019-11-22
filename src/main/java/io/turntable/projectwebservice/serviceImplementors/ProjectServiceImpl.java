@@ -57,14 +57,16 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void updateProject(Project project) {
+    public void updateProject(Project updatedProject) {
         this.jdbcTemplate.update(
                 "update projects set project_name = ?, description = ? where project_id = ?",
-                project.getProject_name(),
-                project.getDescription(),
-                project.getProject_id());
+                updatedProject.getProject_name(),
+                updatedProject.getDescription(),
+                updatedProject.getProject_id());
+        System.out.println("project id = " + updatedProject.getProject_id() + " updated successfully");
     }
 
+    @Override
     public Project getProjectById(String id) {
         int intId = Integer.parseInt(id);
         Project project = (Project) jdbcTemplate.queryForObject("select * from projects where project_id = ?",
@@ -76,12 +78,3 @@ public class ProjectServiceImpl implements ProjectService {
     }
 }
 
-// TODO: 11/22/19 :: code refactor
-// TODO: 11/22/19 :: parse json as DAO to db
-/*
-        @Override
-    public void addProject(Project project) {
-        jdbcTemplate.update("insert into projects (project_name, description) values (?, ?)",
-                new Object[]{project.getProject_name(),project.getDescription()});
-        System.out.println("new project added successfully");}
-*/
