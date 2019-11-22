@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class ProjectDAOImpl implements ProjectDAO {
 
@@ -32,10 +33,10 @@ public class ProjectDAOImpl implements ProjectDAO {
     }
 
     @Override
-    public List<Project> getProjectByName(String productName) {
-        List<Project> projects = jdbcTemplate.query("select * from projects where project_name like ?",
+    public Optional<List<Project>> getProjectByName(String productName) {
+        Optional<List<Project>> projects = Optional.ofNullable(jdbcTemplate.query("select * from projects where project_name like ?",
                 new Object[]{"%" + productName.toLowerCase() + "%"},
-                BeanPropertyRowMapper.newInstance(Project.class));
+                BeanPropertyRowMapper.newInstance(Project.class)));
         return projects;
     }
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Api
 @RestController
@@ -30,7 +31,7 @@ public class ProjectController {
 
     @ApiOperation("get project by name")
     @RequestMapping("/project/search/name/{name}")
-    public List<Project> getAllProjectByName(@PathVariable String name) {
+    public Optional<List<Project>> getAllProjectByName(@PathVariable String name) {
         return projectDAO.getProjectByName(name);
     }
 
