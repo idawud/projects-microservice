@@ -69,10 +69,9 @@ public class ProjectDAOImpl implements ProjectDAO {
         int intId = Integer.parseInt(id);
         Project project = (Project) jdbcTemplate.queryForObject("select * from projects where project_id = ?",
                 new Object[]{intId},
-//                Project.class
                 BeanPropertyRowMapper.newInstance(Project.class)
         );
-        System.out.println("got by Id..............");
+        System.out.println("got project id = " + id + " successfully");
                 return project;
     }
 }
