@@ -41,11 +41,14 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void addProject(Map<String, String> jsonRequest) {
+    public Project addProject(Project project) {
+        System.out.println("...inside add service" + project);
         jdbcTemplate.update("insert into projects (project_name, description) values (?, ?)",
-                new Object[]{jsonRequest.get("project_name"), jsonRequest.get("description")}
+                new Object[]{project.getProject_name(), project.getDescription()}
         );
         System.out.println("new project added successfully");
+
+        return project;
     }
 
     @Override

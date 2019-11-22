@@ -37,9 +37,10 @@ public class ProjectController {
     @ApiOperation("add new project")
     @PostMapping("/project/add")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public void addProject(@RequestBody Map<String, String> jsonRequest) {
-        projectService.addProject(jsonRequest);
-        System.out.println("new project added successfully");
+    public Project addProject(@RequestBody Project project) {
+        System.out.println("....inside route " + project);
+        projectService.addProject(project);
+        return project;
     }
 
 
