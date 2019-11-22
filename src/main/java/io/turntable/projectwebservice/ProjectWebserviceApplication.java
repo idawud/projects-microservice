@@ -1,7 +1,7 @@
 package io.turntable.projectwebservice;
 
-import io.turntable.projectwebservice.DTO.Project;
-import io.turntable.projectwebservice.serviceImplementors.ProjectDAOImpl;
+import io.turntable.projectwebservice.DomainTO.Project;
+import io.turntable.projectwebservice.serviceImplementors.ProjectServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,13 +16,8 @@ public class ProjectWebserviceApplication {
 	}
 
 	@Bean
-	public ProjectDAOImpl getProjectDAO(){
-		return new ProjectDAOImpl();
+	public ProjectServiceImpl getProjectService(){
+		return new ProjectServiceImpl();
 	}
 
-	@Bean
-	public Project getProject(){return new Project();}
-
-//	@Bean
-//	public Project getProjectBean(){return new Project();}
 }

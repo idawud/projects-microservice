@@ -1,11 +1,9 @@
 package io.turntable.projectwebservice.controllers;
 
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.turntable.projectwebservice.DTO.Project;
-import io.turntable.projectwebservice.serviceImplementors.ProjectDAOImpl;
+import io.turntable.projectwebservice.DomainTO.Project;
+import io.turntable.projectwebservice.serviceImplementors.ProjectServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,20 +17,20 @@ import java.util.Optional;
 public class ProjectController {
 
     @Autowired
-    private ProjectDAOImpl projectDAO;
+    private ProjectServiceImpl projectService;
 
     @ApiOperation("get all projects")
     @ResponseStatus(value = HttpStatus.OK)
     @GetMapping({"/project", "/"})
     public List<Project> getAllProjects() {
-        return projectDAO.getAllProjects();
+        return projectService.getAllProjects();
     }
 
 
     @ApiOperation("get project by name")
     @GetMapping("/project/search/name/{name}")
     public Optional<List<Project>> getAllProjectByName(@PathVariable String name) {
-        return projectDAO.getProjectByName(name);
+        return projectService.getProjectByName(name);
     }
 
 
@@ -40,7 +38,7 @@ public class ProjectController {
     @PostMapping("/project/add")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addProject(@RequestBody Map<String, String> jsonRequest) {
-        projectDAO.addProject(jsonRequest);
+        projectService.addProject(jsonRequest);
         System.out.println("new project added successfully");
     }
 
@@ -49,7 +47,7 @@ public class ProjectController {
     @DeleteMapping("/project/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteProject(@PathVariable String id) {
-        projectDAO.deleteProject(id);
+        projectService.deleteProject(id);
     }
 
 
@@ -57,10 +55,10 @@ public class ProjectController {
     @PutMapping("/project/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateProjectRecord(@PathVariable String id, @RequestBody Map<String, String> requestBody) {
-        Project result = projectDAO.getProjectById(id);
+        Project result = projectService.getProjectById(id);
         result.setProject_name(requestBody.get("project_name"));
         result.setDescription(requestBody.get("description"));
-        projectDAO.updateProject(result);
+        projectService.updateProject(result);
         System.out.println("project with id = " + id + " updated successfully");
     }
 
@@ -69,7 +67,7 @@ public class ProjectController {
     @GetMapping("/project/search/id/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Project getProjectById(@PathVariable String id) {
-       return projectDAO.getProjectById(id);
+       return projectService.getProjectById(id);
     }
 }
 
