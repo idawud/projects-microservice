@@ -1,5 +1,7 @@
 package io.turntable.projectwebservice.controllers;
 
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.turntable.projectwebservice.DTO.Project;
@@ -27,16 +29,16 @@ public class ProjectController {
 
     @ApiOperation("get project by name")
     @RequestMapping("/project/search/{name}")
-//    public List<Project> getAllProjectByName(@RequestParam(name = "name", defaultValue = "---") String name) {
     public List<Project> getAllProjectByName(@PathVariable String name) {
         return projectDAO.getProjectByName(name);
     }
 
     @ApiOperation("add new project")
     @PostMapping("/project/add")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(value = HttpStatus.CREATED)
     public void addProject(@RequestBody Map<String, String> jsonRequest) {
         projectDAO.addProject(jsonRequest);
+        System.out.println("new project added successfully");
     }
 
     @ApiOperation("delete project")
@@ -45,8 +47,36 @@ public class ProjectController {
         projectDAO.deleteProject(id);
     }
 
-    @ApiOperation("update record")
-    @PutMapping("/project/update")
+    @ApiOperation("update existing project")
+    @PutMapping("/project/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateProjectRecord(@RequestBody )
+    public void updateProjectRecord(@PathVariable String id, @RequestBody Map<String, String> requestBody) {
+
+        System.out.println(requestBody.get("project_id"));
+        System.out.println("body....." + requestBody);
+//        projectDAO.updateProject();
+    }
+
+
+    //    @GetMapping()
+    @RequestMapping("/project/searchId/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Project getProjectById(@PathVariable String id) {
+       return projectDAO.getProjectById(id);
+    }
 }
+
+
+
+
+/*
+    todo: pass json as ooject
+    @ApiOperation("add project")
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(value = "/project/add", consumes = "application/json", produces = "application/java")
+    public void addProject(@RequestBody Project project){
+        projectDAO.updateProject(project);
+        System.out.println("new project added successfully");
+    }
+*/
+

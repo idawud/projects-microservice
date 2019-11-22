@@ -26,7 +26,7 @@ public class ProjectDAOImpl implements ProjectDAO {
     @Override
     public List<Project> getAllProjects() {
         List<Project> projects = jdbcTemplate.query("Select * from projects",
-        BeanPropertyRowMapper.newInstance(Project.class));
+                BeanPropertyRowMapper.newInstance(Project.class));
         System.out.println("record retrieved successfully");
         return projects;
     }
@@ -42,10 +42,11 @@ public class ProjectDAOImpl implements ProjectDAO {
     @Override
     public void addProject(Map<String, String> jsonRequest) {
         jdbcTemplate.update("insert into projects (project_name, description) values (?, ?)",
-                new Object[]{jsonRequest.get("project_name"),jsonRequest.get("description")}
+                new Object[]{jsonRequest.get("project_name"), jsonRequest.get("description")}
         );
         System.out.println("new project added successfully");
     }
+
 
     @Override
     public void deleteProject(String projectId) {
@@ -63,4 +64,23 @@ public class ProjectDAOImpl implements ProjectDAO {
                 project.getProject_id());
     }
 
+    public Project getProjectById(String id) {
+        int intId = Integer.parseInt(id);
+        Project project = (Project) jdbcTemplate.queryForObject("select * from projects where project_id = ?",
+                new Object[]{intId},
+//                Project.class
+                BeanPropertyRowMapper.newInstance(Project.class)
+        );
+        System.out.println("got by Id..............");
+                return project;
+    }
 }
+
+/*
+    // todo: wrt controller
+    @Override
+    public void addProject(Project project) {
+        jdbcTemplate.update("insert into projects (project_name, description) values (?, ?)",
+                new Object[]{project.getProject_name(),project.getDescription()});
+        System.out.println("new project added successfully");}
+*/

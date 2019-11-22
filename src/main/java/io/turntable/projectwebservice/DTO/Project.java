@@ -38,4 +38,13 @@ public class Project {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "project_id=" + project_id +
+                ", project_name='" + project_name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
