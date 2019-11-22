@@ -27,11 +27,13 @@ public class ProjectController {
         return projectDAO.getAllProjects();
     }
 
+
     @ApiOperation("get project by name")
     @RequestMapping("/project/search/{name}")
     public List<Project> getAllProjectByName(@PathVariable String name) {
         return projectDAO.getProjectByName(name);
     }
+
 
     @ApiOperation("add new project")
     @PostMapping("/project/add")
@@ -41,25 +43,28 @@ public class ProjectController {
         System.out.println("new project added successfully");
     }
 
+
     @ApiOperation("delete project")
     @DeleteMapping("/project/delete/{id}")
     public void deleteProject(@PathVariable String id) {
         projectDAO.deleteProject(id);
     }
 
+
     @ApiOperation("update existing project")
     @PutMapping("/project/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateProjectRecord(@PathVariable String id, @RequestBody Map<String, String> requestBody) {
-
-        System.out.println(requestBody.get("project_id"));
-        System.out.println("body....." + requestBody);
-//        projectDAO.updateProject();
+        Project result = projectDAO.getProjectById(id);
+        result.setProject_name(requestBody.get("project_name"));
+        result.setDescription(requestBody.get("description"));
+        projectDAO.updateProject(result);
+        System.out.println("project with id = " + id + " updated successfully");
     }
 
 
-    //    @GetMapping()
-    @RequestMapping("/project/searchId/{id}")
+    @ApiOperation("get project by id")
+    @RequestMapping("/project/searchId/{id}")       // similar to ... @GetMapping("/project/searchId/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Project getProjectById(@PathVariable String id) {
        return projectDAO.getProjectById(id);
