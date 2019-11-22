@@ -75,16 +75,6 @@ public class ProjectController {
 
 
 
-
-
-
-
-
-
-
-
-
-
 /*
     todo: pass json as ooject
     @ApiOperation("add project")
@@ -95,6 +85,7 @@ public class ProjectController {
         System.out.println("new project added successfully");
     }
 */
+
 
 
 /*
