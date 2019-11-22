@@ -48,7 +48,6 @@ public class ProjectDAOImpl implements ProjectDAO {
         System.out.println("new project added successfully");
     }
 
-
     @Override
     public void deleteProject(String projectId) {
         int pId = Integer.parseInt(projectId);
@@ -76,9 +75,10 @@ public class ProjectDAOImpl implements ProjectDAO {
     }
 }
 
+// TODO: 11/22/19 :: code refactor
+// TODO: 11/22/19 :: parse json as DAO to db
 /*
-    // todo: wrt controller
-    @Override
+        @Override
     public void addProject(Project project) {
         jdbcTemplate.update("insert into projects (project_name, description) values (?, ?)",
                 new Object[]{project.getProject_name(),project.getDescription()});
