@@ -75,7 +75,7 @@ public class ProjectController {
 
 
 /*
-    todo: pass json as ooject
+    todo: pass json as object
     @ApiOperation("add project")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/project/add", consumes = "application/json", produces = "application/java")
