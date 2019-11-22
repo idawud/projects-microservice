@@ -76,4 +76,5 @@ public class ProjectController {
 /*
 * NB
 * @RequestMapping("/project/searchId/{id}") .... provides many controller verbs at Swagger-UI
+* getProjectById() is needed for update
 * */
