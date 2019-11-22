@@ -29,7 +29,7 @@ public class ProjectController {
 
 
     @ApiOperation("get project by name")
-    @RequestMapping("/project/search/{name}")
+    @RequestMapping("/project/search/name/{name}")
     public List<Project> getAllProjectByName(@PathVariable String name) {
         return projectDAO.getProjectByName(name);
     }
@@ -64,7 +64,7 @@ public class ProjectController {
 
 
     @ApiOperation("get project by id")
-    @RequestMapping("/project/searchId/{id}")       // similar to ... @GetMapping("/project/searchId/{id}")
+    @RequestMapping("/project/search/id/{id}")       // similar to ... @GetMapping("/project/searchId/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Project getProjectById(@PathVariable String id) {
        return projectDAO.getProjectById(id);
