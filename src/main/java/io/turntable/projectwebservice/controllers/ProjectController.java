@@ -23,14 +23,14 @@ public class ProjectController {
 
     @ApiOperation("get all projects")
     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping({"/project", "/"})
+    @GetMapping({"/project", "/"})
     public List<Project> getAllProjects() {
         return projectDAO.getAllProjects();
     }
 
 
     @ApiOperation("get project by name")
-    @RequestMapping("/project/search/name/{name}")
+    @GetMapping("/project/search/name/{name}")
     public Optional<List<Project>> getAllProjectByName(@PathVariable String name) {
         return projectDAO.getProjectByName(name);
     }
@@ -65,7 +65,7 @@ public class ProjectController {
 
 
     @ApiOperation("get project by id")
-    @RequestMapping("/project/search/id/{id}")       // similar to ... @GetMapping("/project/searchId/{id}")
+    @GetMapping("/project/search/id/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Project getProjectById(@PathVariable String id) {
        return projectDAO.getProjectById(id);
@@ -86,3 +86,8 @@ public class ProjectController {
     }
 */
 
+
+/*
+* NB
+* @RequestMapping("/project/searchId/{id}") .... provides many controller verbs at Swagger-UI
+* */
