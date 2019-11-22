@@ -47,6 +47,7 @@ public class ProjectController {
 
     @ApiOperation("delete project")
     @DeleteMapping("/project/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void deleteProject(@PathVariable String id) {
         projectDAO.deleteProject(id);
     }
@@ -71,6 +72,15 @@ public class ProjectController {
        return projectDAO.getProjectById(id);
     }
 }
+
+
+
+
+
+
+
+
+
 
 
 
