@@ -1,7 +1,5 @@
 package io.turntable.projectwebservice.controllers;
 
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.turntable.projectwebservice.DTO.Project;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Api
 @RestController
@@ -22,15 +21,15 @@ public class ProjectController {
 
     @ApiOperation("get all projects")
     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping({"/project", "/"})
+    @GetMapping({"/project", "/"})
     public List<Project> getAllProjects() {
         return projectDAO.getAllProjects();
     }
 
 
     @ApiOperation("get project by name")
-    @RequestMapping("/project/search/name/{name}")
-    public List<Project> getAllProjectByName(@PathVariable String name) {
+    @GetMapping("/project/search/name/{name}")
+    public Optional<List<Project>> getAllProjectByName(@PathVariable String name) {
         return projectDAO.getProjectByName(name);
     }
 
@@ -46,6 +45,7 @@ public class ProjectController {
 
     @ApiOperation("delete project")
     @DeleteMapping("/project/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void deleteProject(@PathVariable String id) {
         projectDAO.deleteProject(id);
     }
@@ -64,12 +64,21 @@ public class ProjectController {
 
 
     @ApiOperation("get project by id")
-    @RequestMapping("/project/search/id/{id}")       // similar to ... @GetMapping("/project/searchId/{id}")
+    @GetMapping("/project/search/id/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Project getProjectById(@PathVariable String id) {
        return projectDAO.getProjectById(id);
     }
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -85,3 +94,8 @@ public class ProjectController {
     }
 */
 
+
+/*
+* NB
+* @RequestMapping("/project/searchId/{id}") .... provides many controller verbs at Swagger-UI
+* */
