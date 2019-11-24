@@ -72,8 +72,9 @@ public class ProjectServiceImpl implements ProjectService {
                 new Object[]{intId},
                 BeanPropertyRowMapper.newInstance(Project.class)
         );
-        System.out.println("got project id = " + id + " successfully");
-                return project;
+
+        System.out.println("accessed project id = " + id);
+
+        return project;
     }
 }
-
