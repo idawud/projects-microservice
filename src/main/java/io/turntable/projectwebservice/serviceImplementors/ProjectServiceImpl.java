@@ -2,6 +2,8 @@ package io.turntable.projectwebservice.serviceImplementors;
 
 import io.turntable.projectwebservice.models.Project;
 import io.turntable.projectwebservice.services.ProjectService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,6 +20,8 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     DataSource dataSource;
 
+    Logger log = LoggerFactory.getLogger(this.getClass());
+
     public JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;
     }
@@ -28,11 +32,13 @@ public class ProjectServiceImpl implements ProjectService {
         List<Project> projects = jdbcTemplate.query("Select * from projects",
                 BeanPropertyRowMapper.newInstance(Project.class));
         System.out.println("record retrieved successfully");
+        log.info("all projects retrieved successfully");
         return projects;
     }
 
     @Override
     public Optional<List<Project>> getProjectByName(String productName) {
+        log.info("searching project by name");
         Optional<List<Project>> projects = Optional.ofNullable(jdbcTemplate.query("select * from projects where project_name like ?",
                 new Object[]{"%" + productName.toLowerCase() + "%"},
                 BeanPropertyRowMapper.newInstance(Project.class)));
@@ -46,6 +52,7 @@ public class ProjectServiceImpl implements ProjectService {
                 new Object[]{project.getProject_name(), project.getDescription()}
         );
         System.out.println("new project added successfully");
+        log.info("added new project");
     }
 
     @Override
@@ -63,18 +70,21 @@ public class ProjectServiceImpl implements ProjectService {
                 updatedProject.getDescription(),
                 updatedProject.getProject_id());
         System.out.println("project id = " + updatedProject.getProject_id() + " updated successfully");
+        log.info("project id=" + updatedProject.getProject_id() + "updated");
     }
 
     @Override
     public Project getProjectById(String id) {
+        if (Integer.parseInt(id) < 1) {
+            log.warn("invalid project id access: " + id);
+        }
         int intId = Integer.parseInt(id);
-        Project project = (Project) jdbcTemplate.queryForObject("select * from projects where project_id = ?",
+        Project project = jdbcTemplate.queryForObject("select * from projects where project_id = ?",
                 new Object[]{intId},
                 BeanPropertyRowMapper.newInstance(Project.class)
         );
-
         System.out.println("accessed project id = " + id);
-
+        log.info("project id=" + id + "accessed");
         return project;
     }
 }
