@@ -15,6 +15,7 @@ public class Publisher {
 
 //        redis local connection
         Jedis jedis = new Jedis("localhost");
+        // publishing the message
         jedis.publish("projects", "Message: " + message);
     }
 }
