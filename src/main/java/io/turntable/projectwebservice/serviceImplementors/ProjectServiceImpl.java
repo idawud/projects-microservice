@@ -1,6 +1,6 @@
 package io.turntable.projectwebservice.serviceImplementors;
 
-import io.turntable.projectwebservice.DomainTO.Project;
+import io.turntable.projectwebservice.Models.Project;
 import io.turntable.projectwebservice.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public class ProjectServiceImpl implements ProjectService {
