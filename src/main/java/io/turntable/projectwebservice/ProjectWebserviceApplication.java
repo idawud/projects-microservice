@@ -1,5 +1,7 @@
 package io.turntable.projectwebservice;
 
+//import io.turntable.projectwebservice.log.Sub;
+import io.turntable.projectwebservice.log.Sub;
 import io.turntable.projectwebservice.serviceImplementors.ProjectServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +14,7 @@ public class ProjectWebserviceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectWebserviceApplication.class, args);
+		Sub.receiveMessage();
 	}
 
 	@Bean
@@ -19,4 +22,8 @@ public class ProjectWebserviceApplication {
 		return new ProjectServiceImpl();
 	}
 
+	@Bean
+	public Sub sub() {
+		return new Sub();
+	}
 }
