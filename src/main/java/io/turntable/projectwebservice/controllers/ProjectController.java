@@ -31,7 +31,7 @@ public class ProjectController {
     @ApiOperation("get project by name")
     @GetMapping("/project/search/name/{name}")
     public Optional<List<Project>> getAllProjectByName(@PathVariable String name) {
-        Publisher.publish(String.format("project"));
+        Publisher.publish(String.format("project with name = %s [ACCESS]", name));
         return projectService.getProjectByName(name);
     }
 
@@ -40,6 +40,7 @@ public class ProjectController {
     @PostMapping("/project/add")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addProject(@RequestBody Project project) {
+        Publisher.publish(String.format("project with name = %s, description = %s added [UPDATE]", project.getProject_name(), project.getDescription()));
         projectService.addProject(project);
     }
 
@@ -48,6 +49,7 @@ public class ProjectController {
     @DeleteMapping("/project/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteProject(@PathVariable String id) {
+        Publisher.publish(String.format("project with id = %s deleted [DELETE]", id));
         projectService.deleteProject(id);
     }
 
@@ -60,6 +62,7 @@ public class ProjectController {
         projectToUpdate.setProject_name(project.getProject_name());
         projectToUpdate.setDescription(project.getDescription());
         projectService.updateProject(projectToUpdate);
+        Publisher.publish(String.format("project with id = %s, name = '%s' updated [UPDATE]", projectToUpdate.getProject_id(), project.getProject_name()));
     }
 
 
@@ -67,6 +70,7 @@ public class ProjectController {
     @GetMapping("/project/search/id/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Project getProjectById(@PathVariable String id) {
+        Publisher.publish(String.format("Project with id = %s [ACCESS]", id));
        return projectService.getProjectById(id);
     }
 }

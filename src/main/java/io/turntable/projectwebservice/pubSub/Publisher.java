@@ -7,11 +7,14 @@ import java.net.URISyntaxException;
 
 public class Publisher extends RedisConnection {
     public static void publish(String message) {
-        try {
-            Jedis jedis = getPool().getResource();
-            jedis.publish("projects", "Message: " + message);
-        } catch (URISyntaxException uriSyntaxException) {
-            uriSyntaxException.getMessage();
-        }
+//        try {
+//            Jedis jedis = getPool().getResource();
+//            jedis.publish("projects", "Message: " + message);
+//        } catch (URISyntaxException uriSyntaxException) {
+//            uriSyntaxException.getMessage();
+//        }
+
+        Jedis jedis = new Jedis("localhost");
+        jedis.publish("projects", "Message: " + message);
     }
 }
