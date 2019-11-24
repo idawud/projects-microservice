@@ -31,7 +31,7 @@ public class ProjectController {
     @ApiOperation("get project by name")
     @GetMapping("/project/search/name/{name}")
     public Optional<List<Project>> getAllProjectByName(@PathVariable String name) {
-        Publisher.publish(String.format("project with name = %s [ACCESS]", name));
+        Publisher.publish(String.format("project with name = '%s' [ACCESS]", name));
         return projectService.getProjectByName(name);
     }
 
@@ -40,7 +40,7 @@ public class ProjectController {
     @PostMapping("/project/add")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addProject(@RequestBody Project project) {
-        Publisher.publish(String.format("project with name = %s, description = %s added [UPDATE]", project.getProject_name(), project.getDescription()));
+        Publisher.publish(String.format("project with name = '%s' & description = '%s' added [UPDATE]", project.getProject_name(), project.getDescription()));
         projectService.addProject(project);
     }
 
