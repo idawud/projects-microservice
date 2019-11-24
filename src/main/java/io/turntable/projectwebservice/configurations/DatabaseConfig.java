@@ -39,7 +39,7 @@ public class DatabaseConfig {
                 .username(username)
                 .build();
 
-         Publisher.publish(String.format("DATABASE_URL Connection Successful= %s [CONNECT]", databaseUrl));
+         Publisher.sendMessage(String.format("DATABASE_URL Connection Successful= %s [CONNECT]", databaseUrl));
         return dataSource;
     }
 }
