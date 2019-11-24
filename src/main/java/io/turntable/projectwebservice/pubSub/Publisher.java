@@ -5,7 +5,7 @@ import redis.clients.jedis.Jedis;
 
 import java.net.URISyntaxException;
 
-public class Publisher extends RedisConnection {
+public class Publisher {
     public static void publish(String message) {
 //        try {
 //            Jedis jedis = getPool().getResource();
@@ -14,6 +14,7 @@ public class Publisher extends RedisConnection {
 //            uriSyntaxException.getMessage();
 //        }
 
+//        redis local connection
         Jedis jedis = new Jedis("localhost");
         jedis.publish("projects", "Message: " + message);
     }

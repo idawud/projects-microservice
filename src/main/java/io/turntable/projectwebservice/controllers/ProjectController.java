@@ -31,7 +31,7 @@ public class ProjectController {
     @ApiOperation("get project by name")
     @GetMapping("/project/search/name/{name}")
     public Optional<List<Project>> getAllProjectByName(@PathVariable String name) {
-        Publisher.publish(String.format("project with name = '%s' [ACCESS]", name));
+        Publisher.publish(String.format("project with name (similar to or) = '%s' [ACCESS]", name));
         return projectService.getProjectByName(name);
     }
 
