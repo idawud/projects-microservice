@@ -3,6 +3,7 @@ package io.turntable.projectwebservice.controllers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.turntable.projectwebservice.models.Project;
+import io.turntable.projectwebservice.pubSub.Publisher;
 import io.turntable.projectwebservice.serviceImplementors.ProjectServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ public class ProjectController {
     @ResponseStatus(value = HttpStatus.OK)
     @GetMapping({"/project", "/"})
     public List<Project> getAllProjects() {
+        Publisher.publish("all projects [ACCESS]");
         return projectService.getAllProjects();
     }
 
@@ -29,6 +31,7 @@ public class ProjectController {
     @ApiOperation("get project by name")
     @GetMapping("/project/search/name/{name}")
     public Optional<List<Project>> getAllProjectByName(@PathVariable String name) {
+        Publisher.publish(String.format("project"));
         return projectService.getProjectByName(name);
     }
 

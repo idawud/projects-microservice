@@ -16,6 +16,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -23,6 +24,7 @@ dependencies {
 	}
 	compile("io.springfox:springfox-swagger2:2.9.2")
 	compile("io.springfox:springfox-swagger-ui:2.9.2")
+	compile("redis.clients:jedis:3.0.0")
 }
 
 test {
