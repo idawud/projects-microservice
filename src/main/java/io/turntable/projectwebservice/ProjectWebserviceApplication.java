@@ -1,6 +1,5 @@
 package io.turntable.projectwebservice;
 
-import io.turntable.projectwebservice.DomainTO.Project;
 import io.turntable.projectwebservice.serviceImplementors.ProjectServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

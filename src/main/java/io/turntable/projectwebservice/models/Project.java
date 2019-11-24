@@ -1,4 +1,4 @@
-package io.turntable.projectwebservice.DomainTO;
+package io.turntable.projectwebservice.models;
 
 public class Project {
 

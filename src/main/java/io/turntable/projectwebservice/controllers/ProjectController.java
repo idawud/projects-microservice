@@ -2,14 +2,13 @@ package io.turntable.projectwebservice.controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.turntable.projectwebservice.DomainTO.Project;
+import io.turntable.projectwebservice.models.Project;
 import io.turntable.projectwebservice.serviceImplementors.ProjectServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Api

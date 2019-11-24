@@ -1,9 +1,8 @@
 package io.turntable.projectwebservice.services;
 
-import io.turntable.projectwebservice.DomainTO.Project;
+import io.turntable.projectwebservice.models.Project;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public interface ProjectService {
