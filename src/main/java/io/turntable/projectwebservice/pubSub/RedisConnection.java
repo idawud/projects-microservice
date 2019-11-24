@@ -8,7 +8,7 @@ import java.net.URISyntaxException;
 
 public class RedisConnection {
 
-    static JedisPool getPool() throws URISyntaxException {
+    public static JedisPool getPool() throws URISyntaxException {
         URI redisURI = new URI(System.getenv("REDIS_URL"));
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         poolConfig.setMaxTotal(10);
@@ -17,9 +17,8 @@ public class RedisConnection {
         poolConfig.setTestOnBorrow(true);
         poolConfig.setTestOnReturn(true);
         poolConfig.setTestWhileIdle(true);
-        JedisPool jedisPool = new JedisPool(poolConfig, redisURI);
-
-        return jedisPool;
+        JedisPool pool = new JedisPool(poolConfig, redisURI);
+        return pool;
     }
 }
 
