@@ -12,6 +12,7 @@ public class ProjectWebserviceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectWebserviceApplication.class, args);
+
 	}
 
 	@Bean

@@ -6,9 +6,9 @@ import redis.clients.jedis.Jedis;
 import java.net.URISyntaxException;
 
 public class Publisher extends RedisConnection{
+
     public static void sendMessage(String message){
-        try {
-            Jedis jedis = getPool().getResource();
+        try (Jedis jedis = getPool().getResource()){
             jedis.publish("projects", "Message: " + message);
         } catch (URISyntaxException uriSyntaxException) {
             uriSyntaxException.getMessage();
