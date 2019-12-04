@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @Api
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProjectController {
 
     @Autowired
