@@ -29,6 +29,7 @@ public class ProjectController {
 
     @ApiOperation("get project by name")
     @GetMapping("/project/search/name/{name}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public Optional<List<Project>> getAllProjectByName(@PathVariable String name) {
         return projectService.getProjectByName(name);
     }
