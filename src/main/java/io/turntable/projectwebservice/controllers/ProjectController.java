@@ -13,12 +13,12 @@ import java.util.Optional;
 
 @Api
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProjectController {
 
     @Autowired
     private ProjectServiceImpl projectService;
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @ApiOperation("get all projects")
     @ResponseStatus(value = HttpStatus.OK)
     @GetMapping({"/project", "/"})
