@@ -26,15 +26,14 @@ public class ProjectController {
         return projectService.getAllProjects();
     }
 
-
+    @CrossOrigin
     @ApiOperation("get project by name")
     @GetMapping("/project/search/name/{name}")
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public Optional<List<Project>> getAllProjectByName(@PathVariable String name) {
         return projectService.getProjectByName(name);
     }
 
-
+    @CrossOrigin
     @ApiOperation("add new project")
     @PostMapping("/project/add")
     @ResponseStatus(value = HttpStatus.CREATED)
@@ -42,7 +41,7 @@ public class ProjectController {
         projectService.addProject(project);
     }
 
-
+    @CrossOrigin
     @ApiOperation("delete project")
     @DeleteMapping("/project/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -50,7 +49,7 @@ public class ProjectController {
         projectService.deleteProject(id);
     }
 
-
+    @CrossOrigin
     @ApiOperation("update existing project")
     @PutMapping("/project/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -61,7 +60,7 @@ public class ProjectController {
         projectService.updateProject(projectToUpdate);
     }
 
-
+    @CrossOrigin
     @ApiOperation("get project by id")
     @GetMapping("/project/search/id/{id}")
     @ResponseStatus(HttpStatus.OK)
